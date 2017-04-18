@@ -78,7 +78,7 @@ const buttonReducer = (state = initialState, action) => {
     case PRESS_BUTTON:
       return { ...state, toggled: !state.toggled };
     default:
-      return state
+      return state;
   }
 };
 ```
@@ -263,14 +263,25 @@ class MyButton extends Component {
 * Keys in returned object passed as props
 
 
+## Demo
+
+React component state
+
+vs.
+
+Redux component state
+
+
 
 ## Extras: Redux Setup
 ```
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-// Redux setup stuff... (details later)
-const store = createStore(...)
+// Redux store setup
+const store = createStore(combineReducers({
+  button: buttonReducer
+}));
 
 // Wrap your app in <Provider> to make it ready for Redux:
 const Root = () =>
@@ -278,3 +289,11 @@ const Root = () =>
     <YourApp />
   </Provider>
 ```
+
+
+## Additional reading
+
+* Async actions
+  * E.g. calls to REST API?
+* Redux middleware
+  * Helpers for common tasks (redux-api)
