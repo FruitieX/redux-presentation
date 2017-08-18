@@ -214,8 +214,12 @@ react-redux `connect()` function
 const mapStateToProps = state => ({ ... });
 const mapDispatchToProps = dispatch => ({ ... });
 
-@connect(mapStateToProps, mapDispatchToProps)
 class MyButton extends Component { ... }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyButton);
 ```
 
 
@@ -229,11 +233,12 @@ const mapStateToProps = state => ({
   toggled: state.button.toggled,
 });
 
-@connect(mapStateToProps)
 class ButtonStateDisplay extends Component {
   render = () =>
     <div>{ `Toggled: ${this.props.toggled}` }</div>
 }
+
+export default connect(mapStateToProps)(ButtonStateDisplay);
 ```
 
 * First parameter in `connect()`
@@ -245,17 +250,19 @@ class ButtonStateDisplay extends Component {
 
 ```
 // "What does our component need to modify in Redux?"
-
 // ButtonStateDisplay.jsx
 const mapDispatchToProps = dispatch => ({
   doToggle: () => dispatch(pressButton()),
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
 class MyButton extends Component {
   render = () =>
     <Button onClick={this.props.doToggle} />
 }
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyButton);
 ```
 
 * Second parameter in `connect()`
